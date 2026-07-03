@@ -143,6 +143,7 @@
       </div>
 
       <div id="fallbackBox" style="display:none;">
+        <a id="btnIOS" href="#" class="btn-utama" style="display:none; margin-bottom:16px;">Coba Buka Halaman Donasi</a>
         <div class="ios-box">
           <div class="judul">📱 Cara buka manual (30 detik):</div>
           <ol>
@@ -206,8 +207,13 @@
     }, 2500);
 
   } else if (isIOS && isInApp) {
-    // iOS + in-app browser -> TIDAK BISA dipaksa otomatis, langsung kasih instruksi manual
+    // iOS + in-app browser -> TIDAK BISA dipaksa otomatis (Apple/Instagram sengaja
+    // memblokir ini), tapi tetap kasih tombol coba-buka sebagai opsi tambahan,
+    // di atas instruksi manual yang jadi cara paling pasti berhasil.
     document.getElementById('fallbackBox').style.display = 'block';
+    var btnIOS = document.getElementById('btnIOS');
+    btnIOS.style.display = 'block';
+    btnIOS.setAttribute('href', TARGET_URL);
 
   } else {
     // Browser normal (bukan in-app) -> langsung kasih tombol biasa
